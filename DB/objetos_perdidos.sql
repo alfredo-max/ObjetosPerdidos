@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2019 a las 18:13:49
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Tiempo de generación: 08-11-2019 a las 02:14:00
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `login_mvc`
+-- Base de datos: `objetos_perdidos`
 --
-create database login_mvc;
-use login_mvc;
+create database objetos_perdidos;
+use objetos_perdidos;
 -- --------------------------------------------------------
 
 --
@@ -75,6 +75,15 @@ CREATE TABLE `objetos` (
   `fecha_reporte` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `objetos`
+--
+
+INSERT INTO `objetos` (`id`, `nombre`, `descripcion`, `tipo`, `foto`, `estado`, `contacto`, `fecha_reporte`) VALUES
+(1, 'camisa', 'camisa perdida', 7, NULL, 1, 300, '2019-11-20 00:00:00'),
+(2, 'celular', 'cell samsung', 2, NULL, 4, 333, '2019-11-19 00:00:00'),
+(3, 'collar', 'joya cara', 3, NULL, 3, 333, '2019-11-19 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -122,7 +131,7 @@ CREATE TABLE `tramite` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -131,19 +140,18 @@ CREATE TABLE `usuario` (
   `clave` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
-  `estatus` enum('ACTIVO','INACTIVO') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ACTIVO',
-  `id_tipo` int(11) NOT NULL,
-  `tipo_usuario` varchar(50) COLLATE utf8_unicode_ci not null
+  `tipo_usuario` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` enum('ACTIVO','INACTIVO') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ACTIVO'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `username`, `clave`, `nombre`, `email`, `estatus`, `id_tipo`, `tipo_usuario`) VALUES
-(1, 'admin', 'admin', 'Juan Romero', 'romerojuan@gmail.com', 'ACTIVO', 1, 'usuario_admin'),
-(2, 'brian', 'admin', 'Brian Cantillo', 'cantillo12@gmail.com', 'ACTIVO', 1, 'usuario_regular'),
-(3, 'santi', '123', 'Santiago Mendoza', 'santiagomendoza@gmail.com', 'ACTIVO', 2, 'usuario_regular');
+INSERT INTO `usuario` (`id_usuario`, `username`, `clave`, `nombre`, `email`, `tipo_usuario`, `estatus`) VALUES
+(1, 'admin', 'admin', '', 'romerojuan@gmail.com', 'usuario_admin', 'ACTIVO'),
+(2, 'antonio2000', '123', 'Antonio perez', 'antonio@gmail.com', 'usuario_regular', 'ACTIVO'),
+(3, 'alfred777', '123', 'Alfredo Almarales', 'alma@gmail.com', 'usuario_admin', 'ACTIVO');
 
 --
 -- Índices para tablas volcadas
@@ -186,7 +194,7 @@ ALTER TABLE `tramite`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
@@ -211,7 +219,7 @@ ALTER TABLE `estado_objeto`
 -- AUTO_INCREMENT de la tabla `objetos`
 --
 ALTER TABLE `objetos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_objeto`
@@ -232,10 +240,10 @@ ALTER TABLE `tramite`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
