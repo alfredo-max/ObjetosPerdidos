@@ -1,6 +1,7 @@
 <?php
   class Objeto{
     private $id;
+    private $id_usr;
     private $nombre;
     private $descripcion;
     private $tipo;
@@ -58,6 +59,13 @@
       }
      public function setFechaReporte($fecha_reporte){
          $this->fecha_reporte=$fecha_reporte;
+    }
+
+    public function setId_usr($id_usr){
+      $this->id_usr=$id_usr;
+    }
+    public function getId_usr(){
+      return $this->id_usr;
     }
 
   }

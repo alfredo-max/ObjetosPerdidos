@@ -1,12 +1,13 @@
 <?php
-require("../../Models/Dao/ObjetoDao.php");
-require("../../Models/Entidad/Objeto.php");
+require_once("../../Models/Dao/ObjetoDao.php");
+require_once("../../Models/Entidad/Objeto.php");
 class ObjetoControlador{
     
     public static function getObjeto($nombre){
         $Objeto= new Objeto();
         $Objeto->setNombre($nombre);
         $fila= ObjetoDao::getObjeto($Objeto);
+        $Objeto->setId_usr($fila["id_usuario"]);
         $Objeto->setId($fila["id"]);
         $Objeto->setDescripcion($fila["descripcion"]);
         $Objeto->setTipo($fila["tipo"]);
@@ -28,13 +29,14 @@ class ObjetoControlador{
   
         return $Objeto;
     }
+    
     public static function getObjetos(){
         return ObjetoDao::getObjetos();
     }
     
-
-
-
+    public static function EntregarObj($idObj, $username){
+        return ObjetoDao::Entrega($idObj, $username);
+    }
 
 }
 

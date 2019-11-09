@@ -2,8 +2,8 @@
 <?php
 // UsuarioDao es la capa de acceso a datos mas cercana a la base de datos
 // en esta se ejecutan las consultas, inserciones y de mas en la bdd
-require("Conexion.php");
- require (__DIR__."/../Entidad/Usuario.php");
+require_once("Conexion.php");
+ require_once (__DIR__."/../Entidad/Usuario.php");
     
    class UsuarioDao {
      
