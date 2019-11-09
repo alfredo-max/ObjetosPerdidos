@@ -65,6 +65,7 @@ if(!isset($_SESSION["usuario"])){
                 <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br>
                 <a class="btn btn-primary" href="crudobj/RegObj.php">Registrar objeto</a><br><br>
                 <a href="crudobj/ListaobjetosAdmin.php" class="btn btn-primary">Lista de objetos</a><br><br>
+                <a href="crudobj/FiltrarObjetosAdmin.php" class="btn btn-primary">Filtrar</a><br><br>
              </div>
              <div class="col-md-3"></div>
          </div>
