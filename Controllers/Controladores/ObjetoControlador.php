@@ -11,7 +11,18 @@ class ObjetoControlador{
         $Objeto->setDescripcion($fila["descripcion"]);
         $Objeto->setTipo($fila["tipo"]);
         $Objeto->setFoto($fila["foto"]);
-        $Objeto->setEstado($fila["estado"]);
+        switch($fila["estado"]){
+            case 1:
+            $Objeto->setEstado("perdido");
+            break;
+            case 2:
+            $Objeto->setEstado("tramite");
+            break;
+            case 3:
+            $Objeto->setEstado("entregado");
+            break;
+        }
+        
         $Objeto->setContacto($fila["contacto"]);
         $Objeto->setFechaReporte($fila["fecha_reporte"]);
   

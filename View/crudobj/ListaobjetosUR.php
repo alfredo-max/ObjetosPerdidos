@@ -37,7 +37,7 @@ header("Location:../../index.php");
                         <td> <img  src="data:image/jpg;base64,<?php echo base64_encode($objetos['foto']);?>" alt="hola"></td>
                         <td><?php echo $objetos['contacto']?></td>
                         <td><?php echo $objetos['fecha_reporte']?></td>
-                        <td><a href='ver_objeto.php?nombre=<?php echo $objetos['nombre']?>'>Editar</a></td>
+                        <td><a href='ver_objeto.php?nombre=<?php echo $objetos['nombre']?>'>Ver más</a></td>
 
                      </tr>
                 <?php
