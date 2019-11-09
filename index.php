@@ -23,19 +23,25 @@ session_abort();
     <script src="css/style.css"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="row"><br><br><br><br></div>
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8 text-center bg-light">
-          <h1>Bienvenido</h1>
-          <a href="View/Login.php">Iniciar sesión aquí</a><br>
-          <a href="View/Signup.php">Registrarse aqui</a>
+    <nav class="nav bg-dark text-light border">
+      <ul class="nav">
+        <li class="nav-item">
+          <h1>Oficina de objetos perdidos</h1>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row row1">
+        <div class="col-sm-4 bg-dark text-light">
+          <h3>Bienvenid@</h3>
+          <h5>Inicia sesión o registrate y usa nuestros servicios.</h5>
+        </div>
+        <div class="col-sm-8 text-center bg-light">
+            <a class="btn btn-success" href="View/Login.php">Iniciar sesión aquí</a><br>
+            <a class="btn btn-primary" href="View/Signup.php">Registrarse aqui</a>
+        </div>
       </div>
-      <div class="col-sm-2"></div>
     </div>
-  </div>
-  
 </body>
 </html>
 
