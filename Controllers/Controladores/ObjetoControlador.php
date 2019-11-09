@@ -38,6 +38,10 @@ class ObjetoControlador{
         return ObjetoDao::Entrega($idObj, $username);
     }
 
+    public static function FiltroTipo($tipo){
+        return ObjetoDao::getObjetosTipo($tipo);
+    }
+
 }
 
 

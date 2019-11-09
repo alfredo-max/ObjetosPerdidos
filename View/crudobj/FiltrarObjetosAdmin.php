@@ -38,7 +38,7 @@
         ?>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid bg-light">
         <div class="row">
             <div class="col-4">
                     <div class="modal-dialog">
@@ -66,10 +66,6 @@
                                                 echo "<option value='$id'>";echo $nombre."</option>";
                                             }
                                             ?>
-                                            <!--<option value="celular">Celular</option>
-                                            <option value="carro">Carro</option>
-                                            <option value="moto">Moto</option>
-                                            <option value="computador">Computador</option>-->
                                         </select>
                                     </div>
                                     <div class="form-group text-light" id="Div_estado">
@@ -81,13 +77,75 @@
                                             <option value="3">Entregado</option>
                                         </select>
                                     </div>
-                                    <button type="submit"></button>
+                                    <div class="form-group" id="btnbuscar">
+                                        <button name="buscar" type="submit" class="btn btn-primary">Buscar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
             </div>
-            <div class="col-8"></div>
+            <div class="col-8">
+                <?php
+                    if(isset($_POST["buscar"])){
+                        require_once __DIR__.'/../../Controllers/Controladores/ObjetoControlador.php';
+                        if(isset($_POST["tipo"])&&isset($_POST["estado"])){
+
+                        }else if(isset($_POST["tipo"])){
+                            echo'<table class="table">';
+                            echo'<thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Contacto</th>
+                                        <th scope="col">Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>';
+                            $filas = ObjetoDao::getObjetosTipo($_POST["tipo"]);
+                            foreach ($filas as $fila) {
+                                $nombre = $fila["nombre"];
+                                $desc = $fila["descripcion"];
+                                $estado = $fila["estado"];
+                                $contacto = $fila["contacto"];
+                                $fecha = $fila["fecha_reporte"];
+
+                                switch ($estado) {
+                                    case 1:
+                                        $estado='Pendiente';
+                                        break;
+                                    case 2:
+                                        $estado='Tramite';
+                                        break;
+                                    case 3:
+                                        $estado='Entregado';
+                                        break;
+                                    default:
+                                        $estado='null';
+                                        break;
+                                }
+                                echo"
+                                    <td>$nombre</td>
+                                    <td>$desc</td>
+                                    <td>$estado</td>
+                                    <td>$contacto</td>
+                                    <td>$fecha</td>
+                                    ";
+                            }
+                            echo'   </tr>
+                                </table>';
+                        }else if(isset($_POST["estado"])){
+                            
+                        }else{
+                            echo '<div class="alert alert-danger" role="alert">
+                                    Selecciona una opción!!
+                                    </div>';
+                        }
+                    }
+                ?>
+            </div>
         </div>
     </div>
 

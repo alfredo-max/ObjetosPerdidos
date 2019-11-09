@@ -93,6 +93,16 @@ require_once __DIR__.'/../Entidad/Usuario.php';
          $resultado3 = $resultado3->execute(['',$idObj,$id_usr,date('Y-m-d H:i:s')]);
          return 1;
       }
+
+      public static function getObjetosTipo($tipo){
+         $cnx = Conexion::Conectar();
+         $sql = "SELECT * from objetos where tipo = :tipo";
+         $resultado = $cnx->prepare($sql);
+         $resultado->bindValue(":tipo",$tipo);
+         $resultado->execute();
+
+         return $resultado->fetchAll();
+      }
    }
 
 ?>
