@@ -1,5 +1,5 @@
 <?php
-  class Usuario{
+  class Objeto{
     private $id;
     private $nombre;
     private $descripcion;
@@ -19,8 +19,8 @@
     public function getNombre(){
       return $this->nombre;
     }
-    public function setNombre($username){
-      $this->username=$username;
+    public function setNombre($nombre){
+      $this->nombre=$nombre;
     }
     public function getDescripcion(){
       return $this->descripcion;
@@ -57,7 +57,7 @@
         return $this->fecha_reporte;
       }
      public function setFechaReporte($fecha_reporte){
-         $this->estado=$fecha_reporte;
+         $this->fecha_reporte=$fecha_reporte;
     }
 
   }
