@@ -106,7 +106,7 @@ header("Location:../../index.php");
         }else{
             if($_SESSION["obj"]=="reportado"){
                 ?>
-                 <script type="text/javascript">
+             <script type="text/javascript">
               Swal.fire('Objeto reportado con exito!','You clicked the button!','success');
               var boton= document.getElementById("reportar");
               boton.innerHTML = 'Cancelar Reporte';
@@ -114,7 +114,7 @@ header("Location:../../index.php");
               boton.className +="btn btn-danger form-control"; 
              </script>
              <?php
-             
+
               }else{
                   echo ("hola");
               }

@@ -17,6 +17,11 @@ class TramiteControlador{
        
          return TramiteDao::DeleteTramite($usuario,$objeto);
      }
+     public static function BuscarTramite($nombreUsuario,$nombreObjeto){
+        $usuario=UsuarioControlador::getUsuario($nombreUsuario);
+        $objeto=ObjetoControlador::getObjeto($nombreObjeto);
+        return TramiteDao::BuscarTramite($usuario,$objeto);
+     }
   
 
 

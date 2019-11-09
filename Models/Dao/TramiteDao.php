@@ -22,6 +22,17 @@ require_once ("Conexion.php");
              return  $resultado->execute();
         }
 
+        public static function BuscarTramite($usuario,$objeto){
+         $cnx= Conexion::Conectar();
+         $idusuario= $usuario->getId();
+         $idobjeto= $objeto->getId();
+         $sql= "SELECT * FROM tramite where id_usuario=$idusuario AND id_objeto=$idobjeto'";
+         $resultado= $cnx->prepare($sql);
+         $resultado->execute();
+         $numfila= $resultado->rowCount();
+         return $numfila;
+        }
+
 
     }
 
