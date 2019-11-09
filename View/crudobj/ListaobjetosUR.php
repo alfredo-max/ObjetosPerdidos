@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 if(!isset($_SESSION["usuario"])){
 header("Location:../../index.php");
 }
@@ -22,6 +24,7 @@ header("Location:../../index.php");
                 <tr>
                 <th>Nombre</th>
                 <th>Foto</th>
+                <th>Estado</th>
                 <th>Contacto</th>
                 <th>Fecha Reporte</th>
                 <th>Accions</th>
@@ -35,6 +38,7 @@ header("Location:../../index.php");
                      <tr>
                         <td><?php echo $objetos['nombre']?></td>
                         <td> <img  src="data:image/jpg;base64,<?php echo base64_encode($objetos['foto']);?>" alt="hola"></td>
+                        <td><?php echo $objetos['estado']?></td> 
                         <td><?php echo $objetos['contacto']?></td>
                         <td><?php echo $objetos['fecha_reporte']?></td>
                         <td><a href='ver_objeto.php?nombre=<?php echo $objetos['nombre']?>'>Ver más</a></td>

@@ -2,7 +2,7 @@
 <?php
 // UsuarioDao es la capa de acceso a datos mas cercana a la base de datos
 // en esta se ejecutan las consultas, inserciones y de mas en la bdd
-require("Conexion.php");
+require_once ("Conexion.php");
  require (__DIR__."/../Entidad/Usuario.php");
     
    class UsuarioDao {
@@ -49,7 +49,7 @@ require("Conexion.php");
             $nombre=$usuario->getNombre();
             $tipo=$usuario->getTipoUsuario();
 
-            $sql="INSERT INTO usuario(username,clave,email,nombre,tipo_usuario) Values ('$user','$pass','$email','$nombre','$tipo')";  
+            $sql="INSERT INTO usuario(username,clave,email,nombre,tipo_usuario) VALUES('$user','$pass','$email','$nombre','$tipo')";  
       
             $resultado=$cnx->prepare($sql);          
             return $resultado->execute();

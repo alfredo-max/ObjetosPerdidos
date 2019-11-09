@@ -1,17 +1,22 @@
 <?php
-if(isset($_POST["reportar"])){
-  echo "hola";
-}
+
 session_start();
 if(!isset($_SESSION["usuario"])){
 header("Location:../../index.php");
 }
  require("../../Controllers/Controladores/ObjetoControlador.php");
- $objeto=ObjetoControlador::getObjeto($_GET["nombre"]);
 
- $_SESSION["objeto"]=$objeto->getNombre();
+    
+    $objeto=ObjetoControlador::getObjeto($_GET["nombre"]); 
+    // if(!isset( $_SESSION["objeto"])){
+    //     $_SESSION["objeto"]=$objeto->getNombre();
+    // }
+    
+    
+ 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +25,7 @@ header("Location:../../index.php");
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/cssAlf.css">
     <link rel="stylesheet" href="../../sweetalert2/dist/sweetalert2.min.css">
+    <script src="../../sweetalert2/dist/sweetalert2.all.min.js"></script>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -57,7 +63,7 @@ header("Location:../../index.php");
                 <textarea name="text_area"  cols="30" rows="10" readonly="readonly" class="form-control"><?php echo $objeto->getDescripcion()?>    </textarea>
                 </div>
                 <div class="form-group">
-                <label >Estado</label>
+                <label >Estado </label>
                 <input type="text"  value="<?php echo $objeto->getEstado()?>" readonly="readonly" class="form-control">
                 </div>
                 
@@ -80,7 +86,8 @@ header("Location:../../index.php");
                  </div>
              <div class="form-group col-12 text-center " >
                  <form id="form" action="" >
-                      <button type="summit" id="reportar" class="btn btn-success form-control" onclick="Reportar()" > Reportar</button>   
+                      <!-- <input type="summit" id="reportar" class="btn btn-success form-control" onclick="Reportar()" > Reportar</button>    -->
+                      <a class="btn btn-success form-control" id="reportar"  href="reportar.php?nombreObjeto=<?php echo $objeto->getNombre()?>&nombreUsuario=<?php echo $_SESSION["usuario"]?>">Reportar</a>
                       <div>&nbsp</div>               
                  </form>
                  
@@ -93,7 +100,29 @@ header("Location:../../index.php");
     </div>
           
 </div>
-<script src="../../sweetalert2/dist/sweetalert2.all.min.js"></script>
-<script src="../../js/miJS.js"></script>
+     <?php
+        if(!isset($_SESSION["obj"])){
+            $_SESSION["obj"]="sinreportar";
+        }else{
+            if($_SESSION["obj"]=="reportado"){
+                ?>
+                 <script type="text/javascript">
+              Swal.fire('Objeto reportado con exito!','You clicked the button!','success');
+              var boton= document.getElementById("reportar");
+              boton.innerHTML = 'Cancelar Reporte';
+              boton.style.background='red';
+              boton.className +="btn btn-danger form-control"; 
+             </script>
+             <?php
+             
+              }else{
+                  echo ("hola");
+              }
+        }
+         
+        
+       
+     ?>
+
 </body>
 </html>
