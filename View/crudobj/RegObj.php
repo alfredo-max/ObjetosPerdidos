@@ -1,5 +1,34 @@
 <?php
+    session_start();
+    $imagenEscapes=null;
+    if(isset($_FILES["imgObj"]["tmp_name"]) && is_uploaded_file($_FILES["imgObj"]["tmp_name"])){
+        // $info=getimagesize($_FILES["imgObj"]["tmp_name"]);
+        // Obtiene el formato de imagen nuevamente para asignarlo al nombre
+        // $tipo=$_FILES["imgObj"]["type"];
+        // Asigna un nombre aleatorio
+        // $nom=md5(time().rand(500,100000),FALSE)."_.$tipo";
+        // Guarda el contenido de la imagen codificado con base 64 
+        
+        //$imagenEscapes=base64_encode(file_get_contents($_FILES["imgObj"]["tmp_name"]));
+        $imagen = $_FILES["imgObj"]["tmp_name"];
+        $size = $_FILES["imgObj"]["size"];
+        $imagen = fopen($imagen, 'r');
+        $imagenEscapes = fread($imagen,$size);
+        fclose($imagen);
+    }
+    $agregado=null;
+    if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tipo"]) && isset($_POST["contacto"]) && isset($imagenEscapes)){
+        require_once __DIR__.'/../../Controllers/Accions/AccionAgregarObj.php';
+        $NomObj = $_POST["nombre"];
+        $DescObj = $_POST["descripcion"];
+        $tipo = $_POST["tipo"];
+        $contacto = $_POST["contacto"];
 
+        $agregar = new AgregarObj();
+        $agregado = $agregar->Agregar($NomObj,$DescObj,$tipo,$contacto,$imagenEscapes,$_SESSION["usuario"]);
+    }
+
+    session_abort();
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +67,20 @@
                     </li>
                 </ul>
                 ';
-            ?>
+        session_abort();
+        ?>
    </nav>
-
+    <?php
+    if (isset($agregado) && $agregado==1) {
+        echo "<div class='alert alert-success' role='alert'>
+                    Objeto agregado!!
+                </div>";
+    }else if($agregado!=null){
+        echo '<div class="alert alert-danger" role="alert">
+                    Objeto no agregado!!
+                </div>';
+    }
+    ?>
    <div class="container-fluid bg-dark">
         <div class="row">
             <div class="col-sm-4 border border-dark modal-content">
@@ -55,31 +95,40 @@
                     <div class="colsm-8">
                         <div class="form">
                             <h4>Los campos corresponden al objeto</h4>
-                            <form action="RegObj.php" class="form" method="post">
+                            <form action="" class="form" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="NombreObj">Nombre</label>
-                                    <input type="text" name="nombre" id="Nombre" class="form-control border border-dark">
+                                    <input required type="text" name="nombre" id="Nombre" class="form-control border border-dark">
                                 </div>
                                 <div class="form-group">
                                     <label for="DescipcionObj">Descripción</label>
-                                    <textarea class="form-control border border-dark" name="descripcion" id="descripcion" cols="30" rows="6" placeholder="Aquí la decripción del objeto"></textarea>
+                                    <textarea required class="form-control border border-dark" name="descripcion" id="descripcion" cols="30" rows="6" placeholder="Aquí la decripción del objeto"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="TipoObj">Tipo</label>
                                     <select name="tipo" id="tipo" class="form-control border border-dark">
-                                        <option value="celular">Celular</option>
+                                        <?php
+                                        require_once __DIR__.'/../../Controllers/Accions/AccionAgregarObj.php';
+                                        $IdNombre = AgregarObj::getIdNombre();
+                                        foreach($IdNombre as $fila){
+                                            $id = $fila["id"];
+                                            $nombre = $fila["nombre"];
+                                            echo "<option value='$id'>";echo $nombre."</option>";
+                                        }
+                                        ?>
+                                        <!--<option value="celular">Celular</option>
                                         <option value="carro">Carro</option>
                                         <option value="moto">Moto</option>
-                                        <option value="computador">Computador</option>
+                                        <option value="computador">Computador</option>-->
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="ImgObj">Imagen</label>
-                                    <input type="file" name="imgObj" id="imgObj" accept="image/jpeg" class="form-control border border-dark" placeholder="elige un archivo">
+                                    <input required type="file" name="imgObj" id="imgObj" accept="image/jpeg" class="form-control border border-dark" placeholder="elige un archivo">
                                 </div>
                                 <div class="form-group">
                                     <label for="Contacto">Contacto</label>
-                                    <input type="number" name="contacto" id="contacto" placeholder="#" class="form-control border border-dark">
+                                    <input required type="number" name="contacto" id="contacto" placeholder="#" class="form-control border border-dark">
                                 </div>
                                 <button type="submit" class="btn btn-success" >Guardar</button>
                             </form>
