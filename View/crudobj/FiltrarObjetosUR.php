@@ -66,7 +66,7 @@
                     <tbody>
                 <?php
                     require_once "../../Controllers/Controladores/ObjetoControlador.php";
-                    $filas = ObjetoControlador::FiltroObjetos();
+                    $filas = ObjetoControlador::FiltroObjUR();
                     foreach ($filas as $fila) {
                         echo "<tr>";
                         $nombre = $fila["nombre"];

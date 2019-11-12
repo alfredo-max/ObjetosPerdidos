@@ -94,14 +94,23 @@ require_once __DIR__.'/../Entidad/Usuario.php';
          return 1;
       }
 
-      public static function getObjetosTipo($tipo){
+      public static function getObjetosDatatable(){
          $cnx = Conexion::Conectar();
-         $sql = "SELECT * from objetos where tipo = :tipo";
+         $sql = "SELECT * from objetos";
          $resultado = $cnx->prepare($sql);
-         $resultado->bindValue(":tipo",$tipo);
          $resultado->execute();
+         $lista = $resultado->fetchAll();
+         return $lista;
+      }
 
-         return $resultado->fetchAll();
+      public static function getObjetosDatatableUR(){
+         $cnx = Conexion::Conectar();
+         $sql = "SELECT * from objetos where estado != :estado";
+         $resultado = $cnx->prepare($sql);
+         $resultado->bindValue(":estado",3);
+         $resultado->execute();
+         $lista = $resultado->fetchAll();
+         return $lista;
       }
    }
 

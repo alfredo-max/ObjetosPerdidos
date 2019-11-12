@@ -53,10 +53,11 @@ if(!isset($_SESSION["usuario"])){
         <div class="col-sm-3"></div>
         <div class="col-sm-6 bg-dark text-light text-center"><br><br><br>
             <h3>Hola <?php echo $_SESSION["usuario"]?></h3><br><br>
-            <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br><br>
-            <a class="btn btn-primary" href="../Controllers/Accions/AccionLogOut.php">cerrar session</a><br><br><br>
-            <a class="btn btn-primary" href="crudobj/ListaobjetosUR.php">Ver objetos perdidos</a><br><br><br>
-            <a class="btn btn-primary" href="crudobj/RegObj.php">Registrar Objeto</a><br><br>     
+            <a class="btn btn-primary" href="crudobj/FiltrarObjetosUR.php">Filtro de objetos</a><br><br>
+            <a class="btn btn-primary" href="crudobj/ListaobjetosUR.php">Ver objetos perdidos</a><br><br>
+            <a class="btn btn-primary" href="crudobj/RegObj.php">Registrar Objeto</a><br><br>
+            <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br>
+            <a class="btn btn-primary" href="../Controllers/Accions/AccionLogOut.php">cerrar session</a><br><br>
         </div>
         <div class="col-sm-3"></div>
     </div>

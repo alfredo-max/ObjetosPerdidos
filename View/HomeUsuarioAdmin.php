@@ -61,11 +61,11 @@ if(!isset($_SESSION["usuario"])){
              <div class="col-md-3"></div>
              <div class="col-md-6 bg-dark text-light text-center"><br><br><br>
                 <h3>Hola Administrador <?php echo $_SESSION["usuario"]?></h3><br><br>
-                <a class="btn btn-primary" href="crud/crud.php">CROUD</a> <br><br>
-                <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br>
+                <a class="btn btn-primary" href="crud/crud.php">Crud de usuarios</a> <br><br>
                 <a class="btn btn-primary" href="crudobj/RegObj.php">Registrar objeto</a><br><br>
                 <a href="crudobj/ListaobjetosAdmin.php" class="btn btn-primary">Lista de objetos</a><br><br>
-                <a href="crudobj/FiltrarObjetosAdmin.php" class="btn btn-primary">Filtrar</a><br><br>
+                <a href="crudobj/FiltrarObjetosAdmin.php" class="btn btn-primary">Filtrar Objetos</a><br><br>
+                <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br>
              </div>
              <div class="col-md-3"></div>
          </div>
