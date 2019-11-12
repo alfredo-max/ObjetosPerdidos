@@ -71,7 +71,7 @@ header("Location:../../index.php");
                      ?>
                      <tr>
                         <td><?php echo $objetos['nombre']?></td>
-                        <td> <img  src="data:image/jpg;base64,<?php echo base64_encode($objetos['foto']);?>" alt="hola"></td>
+                        <td> <img style="width:60px;height:60px;"  src="data:image/jpg;base64,<?php echo base64_encode($objetos['foto']);?>" alt="hola"></td>
                         <td><?php echo $estado?></td> 
                         <td><?php echo $objetos['contacto']?></td>
                         <td><?php echo $objetos['fecha_reporte']?></td>
