@@ -24,7 +24,7 @@ class UsuarioControlador{
     public static function getUsuario($user){
       $userObject= new Usuario();
       $userObject->setUserName($user);
-
+      
       $fila= UsuarioDao::getUsuario($userObject);
       $userObject->setId($fila["id_usuario"]);
       $userObject->setClave($fila["clave"]);

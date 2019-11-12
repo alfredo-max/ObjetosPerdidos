@@ -25,6 +25,13 @@ require_once __DIR__.'/../Entidad/Usuario.php';
          $filas= $resultado->fetchAll();
          return $filas;    
       }
+      public static function CambiarEstado($objeto,$estado){
+         $cnx= Conexion::Conectar();
+         $sql="UPDATE objetos SET estado = '$estado' WHERE objetos.id= :id";
+         $resultado= $cnx->prepare($sql);
+         $resultado->bindValue(":id",$objeto->getId());
+         return  $resultado->execute();
+      }
     
       public static function setObjeto($objeto){
          $cnx = Conexion::Conectar();

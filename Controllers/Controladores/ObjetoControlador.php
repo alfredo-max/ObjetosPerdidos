@@ -33,6 +33,11 @@ class ObjetoControlador{
     public static function getObjetos(){
         return ObjetoDao::getObjetos();
     }
+    public static function CambiarEstado($nombre,$estado){
+        $objeto =self::getObjeto($nombre);
+        return ObjetoDao::CambiarEstado($objeto,$estado);
+    }
+    
     
     public static function EntregarObj($idObj, $username){
         return ObjetoDao::Entrega($idObj, $username);

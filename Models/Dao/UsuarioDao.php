@@ -49,7 +49,7 @@ require_once("Conexion.php");
             $nombre=$usuario->getNombre();
             $tipo=$usuario->getTipoUsuario();
 
-            $sql="INSERT INTO usuario(username,clave,email,nombre,tipo_usuario) Values ('$user','$pass','$email','$nombre','$tipo')";  
+            $sql="INSERT INTO usuario(username,clave,email,nombre,tipo_usuario) VALUES('$user','$pass','$email','$nombre','$tipo')";  
       
             $resultado=$cnx->prepare($sql);          
             return $resultado->execute();
