@@ -2,6 +2,7 @@
 session_start();
 if (!isset($_SESSION["tipo"])) {
     header("Location: ../index.php");
+   
 }
 session_abort();
 ?>
@@ -36,7 +37,7 @@ session_abort();
                         <a href="../Controllers/Accions/AccionVerPerfil.php" class="nav-link active">';echo $_SESSION['usuario'];echo '</a>
                     </li>
                     <li>
-                        <a href="../controlador/logout.php" class="nav-link">Cerrar sesión</a>
+                        <a href="../Controllers/Accions/AccionLogOut.php" class="nav-link">Cerrar sesión</a>
                     </li>
                 </ul>
                 ';
@@ -55,12 +56,24 @@ session_abort();
                 $usrname = $usuario->getUserName();
                 $email = $usuario->getEmail();
                 $tipo = $usuario->getTipoUsuario();
-                echo "<span class='text-light'>Nombre: $nombre</span><br><br>";
-                echo "<span class='text-light'>Alias: $usrname</span><br><br>";
-                echo "<span class='text-light'>Email: $email</span><br><br>";
-                echo "<span class='text-light'>Tipo: $tipo</span><br><br>";
-                echo "<a class='btn btn-primary' href='../index.php'>Volver</a>";
-                echo "<a class='btn btn-primary' href='crud/Editarpssw.php?username=$usrname'>Editar contraseña</a><br><br>";
+                if(isset($_SESSION["facebook"])){// si hay una secicon de face iniciada
+                   ?>
+                       <div>
+                           <h6>Foto De Perfil:</h6>
+                          <img src="<?php  echo $_SESSION["imagen"] ?>" alt="foto de perfil"><br><br>
+                       </div>
+                       <span class='text-light'>Nombre: <?php echo $_SESSION["usuario"] ?> </span><br><br>
+
+                   <?php
+                }else{
+                    echo "<span class='text-light'>Nombre: $nombre</span><br><br>";
+                    echo "<span class='text-light'>Alias: $usrname</span><br><br>";
+                    echo "<span class='text-light'>Email: $email</span><br><br>";
+                    echo "<span class='text-light'>Tipo: $tipo</span><br><br>";
+                    echo "<a class='btn btn-primary' href='../index.php'>Volver</a>";
+                    echo "<a class='btn btn-primary' href='crud/Editarpssw.php?username=$usrname'>Editar contraseña</a><br><br>";
+                }
+               
                 ?>
             </div>
             <div class="col-sm-3"></div>

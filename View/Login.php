@@ -1,10 +1,13 @@
 <?php
+
 session_start();
+ require ('../fb-init.php');
+
 if (isset($_SESSION["tipo"])) {
   if($_SESSION["tipo"]=='usuario_regular') header("Location: HomeUsuarioRegular.php");
   if($_SESSION["tipo"]=='usuario_admin') header("Location: HomeUsuarioAdmin.php");
 }
-session_abort();
+// session_abort();
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +17,17 @@ session_abort();
     <title>Document</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-social.css">
+
     <link rel="stylesheet" href="../css/solid.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/all.css">
-
+    
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
     <script src="../js/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/7e33a6cce9.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="container">
@@ -36,6 +43,11 @@ session_abort();
                     <div class="form-group">
                         <input type="password"  name="clave"  placeholder="Contraseña" class="form-control">
                     </div>
+                    <div>
+                        <a href="<?php echo $login_url;?> ">Ingrese con Faceboock</a>
+                         
+                    </div>
+                      
                     <input type="submit" value="Ingresar" class="btn btn-primary">
                     <p>¿no tienes una cuenta? <a href="signup.php">ingresa aqui</a></p>
                 </form>

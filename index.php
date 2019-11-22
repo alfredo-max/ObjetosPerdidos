@@ -1,10 +1,11 @@
 <?php
 session_start();
+require_once ("fb-init.php");// esto hay que agregarlo en el index o si no no funciona
 if (isset($_SESSION["tipo"])) {
   if($_SESSION["tipo"]=='usuario_regular') header("Location: View/HomeUsuarioRegular.php");
   if($_SESSION["tipo"]=='usuario_admin') header("Location: View/HomeUsuarioAdmin.php");
 }
-session_abort();
+// session_abort();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,5 +39,7 @@ session_abort();
   
 </body>
 </html>
+
+
 
 
