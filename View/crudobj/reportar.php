@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../css/bootstrap.css">
     
-</head>
+</head> 
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="nav navbar-nav">

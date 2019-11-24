@@ -47,9 +47,14 @@ if (isset($_SESSION["tipo"])) {
                         <a href="<?php echo $login_url;?> ">Ingrese con Faceboock</a>
                          
                     </div>
+                    <div class="form-group"> 
                       
-                    <input type="submit" value="Ingresar" class="btn btn-primary">
-                    <p>¿no tienes una cuenta? <a href="signup.php">ingresa aqui</a></p>
+                      <input type="submit" value="Ingresar" class="btn btn-primary">
+                       <p>¿no tienes una cuenta? <a href="signup.php">ingresa aqui</a></p>
+                       </div>
+                    <div class="form-group"> 
+                        <a href="../mensajeGmail.php">Olvidaste tu contraseña</a>
+                      </div>
                 </form>
             </div>
             <div class="col-sm-4"></div>

@@ -66,6 +66,12 @@ session_abort();
 
                    <?php
                 }else{
+                     ?>
+                     <div>
+                           <h6>Foto De Perfil:</h6>
+                          <!-- <img src="../img/" alt="foto de perfil"><br><br> -->
+                       </div>
+                     <?php
                     echo "<span class='text-light'>Nombre: $nombre</span><br><br>";
                     echo "<span class='text-light'>Alias: $usrname</span><br><br>";
                     echo "<span class='text-light'>Email: $email</span><br><br>";
