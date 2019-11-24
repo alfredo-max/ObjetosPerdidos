@@ -4,8 +4,8 @@ session_start();
 if (isset($_SESSION["tipo"])) {
   if($_SESSION["tipo"]=='usuario_regular') header("Location: HomeUsuarioRegular.php");
 }
-session_abort();
-session_start();
+//session_abort();
+//session_start();
 // si no se ha iniciado seccion
 if(!isset($_SESSION["usuario"])){
    header("Location:../index.html");
@@ -65,6 +65,7 @@ if(!isset($_SESSION["usuario"])){
                 <a class="btn btn-primary" href="crudobj/RegObj.php">Registrar objeto</a><br><br>
                 <a href="crudobj/ListaobjetosAdmin.php" class="btn btn-primary">Lista de objetos</a><br><br>
                 <a href="crudobj/FiltrarObjetosAdmin.php" class="btn btn-primary">Filtrar Objetos</a><br><br>
+                <a href="crudobj/estadisticas.php" class="btn btn-primary">Estadísticas</a><br><br>
                 <a class="btn btn-primary" href="perfil.php">Mi perfil</a><br><br>
              </div>
              <div class="col-md-3"></div>
