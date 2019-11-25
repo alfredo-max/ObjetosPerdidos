@@ -2,7 +2,7 @@
 // esta pagina recibe los datos de logincontrol esta contiene todas las funcioneS
 // que se realizan en UsuarioDao
 
-require(__DIR__."/../../Models/Dao/UsuarioDao.php");
+require_once (__DIR__."/../../Models/Dao/UsuarioDao.php");
 
 
 class UsuarioControlador{
@@ -30,6 +30,20 @@ class UsuarioControlador{
       $userObject->setClave($fila["clave"]);
       $userObject->setNombre($fila["nombre"]);
       $userObject->setEmail($fila["email"]);
+      $userObject->setTipoUsuario($fila["tipo_usuario"]);
+
+      return $userObject;
+
+    }
+    public static function getUsuarioEmail($email){
+      $userObject= new Usuario();
+      $userObject->setEmail($email);
+      
+      $fila= UsuarioDao::getUsuarioEmail($email);
+      $userObject->setUserName($fila["username"]);    
+      $userObject->setId($fila["id_usuario"]);
+      $userObject->setClave($fila["clave"]);
+      $userObject->setNombre($fila["nombre"]);
       $userObject->setTipoUsuario($fila["tipo_usuario"]);
 
       return $userObject;
@@ -65,6 +79,11 @@ class UsuarioControlador{
       $consultEnd = UsuarioDao::EditarUsuario($consulta,$usuario->getUserName());
      // return $consult;
        return $consultEnd;
+    }
+
+    // cambiar contraseña
+    public static function CambiarClave($user,$nueva_clave){
+         return UsuarioDao::CambioPass($user,$nueva_clave);
     }
    
 

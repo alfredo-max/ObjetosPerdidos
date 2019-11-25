@@ -3,7 +3,7 @@
 // UsuarioDao es la capa de acceso a datos mas cercana a la base de datos
 // en esta se ejecutan las consultas, inserciones y de mas en la bdd
 require_once ("Conexion.php");
- require (__DIR__."/../Entidad/Usuario.php");
+ require_once (__DIR__."/../Entidad/Usuario.php");
     
    class UsuarioDao {
      
@@ -57,12 +57,22 @@ require_once ("Conexion.php");
          }
           
       }
-
+   // buscar usuario por username
       public static function getUsuario($usuario){
          $cnx= Conexion::Conectar();
          $sql= "SELECT * FROM usuario where username=:user";
          $resultado= $cnx->prepare($sql);
          $resultado->bindValue(":user",$usuario->getUserName());
+         $resultado->execute();
+         $fila= $resultado->fetch();
+         return $fila;
+      }
+      // buscar usuario por correo
+      public static function getUsuarioEmail($email){
+         $cnx= Conexion::Conectar();
+         $sql= "SELECT * FROM usuario where email=:email";
+         $resultado= $cnx->prepare($sql);
+         $resultado->bindValue(":email",$email);
          $resultado->execute();
          $fila= $resultado->fetch();
          return $fila;
@@ -100,7 +110,16 @@ require_once ("Conexion.php");
          $cnx = Conexion::Conectar();
          $sql = "UPDATE usuario set clave = '$contrasena' where username = '$username' ";
          $resultado = $cnx->prepare($sql);
-         return $resultado->execute();
+          return $resultado->execute();
+        
+      }
+      public static function BuscarGmail($buscarGmail){
+         $cnx = Conexion::Conectar();
+         $sql= "SELECT email FROM usuario WHERE email='$buscarGmail'";
+         $resultado = $cnx->prepare($sql);
+         $resultado->execute();
+         $fila= $resultado->rowCount();
+         return $fila;
       }
     
    }

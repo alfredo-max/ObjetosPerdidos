@@ -24,6 +24,7 @@ if (isset($_SESSION["tipo"])) {
     <link rel="stylesheet" href="../css/all.css">
     
     <script src="../js/bootstrap.min.js"></script>
+    
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="https://kit.fontawesome.com/7e33a6cce9.js" crossorigin="anonymous"></script>
@@ -52,9 +53,11 @@ if (isset($_SESSION["tipo"])) {
                       <input type="submit" value="Ingresar" class="btn btn-primary">
                        <p>¿no tienes una cuenta? <a href="signup.php">ingresa aqui</a></p>
                        </div>
-                    <div class="form-group"> 
-                        <a href="../mensajeGmail.php">Olvidaste tu contraseña</a>
+                       <div class="form-group"> 
+                        <a href="correo.php">Olvidaste tu contraseña</a>                 
                       </div>
+
+                    
                 </form>
             </div>
             <div class="col-sm-4"></div>
@@ -62,3 +65,6 @@ if (isset($_SESSION["tipo"])) {
     </div>
 </body>
 </html>
+
+
+

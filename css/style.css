@@ -91,3 +91,8 @@ button{
     padding: 5px 0 25px;
 }
 
+.fondo_gmail{
+    background-color: #3b4652;
+    /* background-image:url("../img/fondo.jpg"); */
+}
+
