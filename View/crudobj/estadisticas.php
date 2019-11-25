@@ -9,6 +9,8 @@ if (isset($_SESSION["tipo"])) {
 if(!isset($_SESSION["usuario"])){
    header("Location:../index.html");
 }
+
+require_once '../../Controllers/Controladores/GraficasControlador.php';
 ?>
 
 <html lang="en">
@@ -22,11 +24,11 @@ if(!isset($_SESSION["usuario"])){
     <script src="../../Chart.js-2.9.3/samples/utils.js"></script>
 
     <style>
-	canvas{
-		-moz-user-select: none;
-		-webkit-user-select: none;
-		-ms-user-select: none;
-	}
+		/*canvas{
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}*/
 	</style>
 </head>
 <body>
@@ -36,44 +38,27 @@ if(!isset($_SESSION["usuario"])){
 	</div>
 	<br>
 	<br>
-	<button id="randomizeData">Randomize Data</button>
-	<button id="addDataset">Add Dataset</button>
-	<button id="removeDataset">Remove Dataset</button>
-	<button id="addData">Add Data</button>
-	<button id="removeData">Remove Data</button>
 	<script>
-		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 		var config = {
 			type: 'line',
 			data: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				labels: [<?php 
+				foreach (DatosGrafica::RangoMeses() as $value) {
+					echo $value;
+				}
+				?>],
 				datasets: [{
-					label: 'My First dataset',
+					label: 'Objetos perdidos',
 					backgroundColor: window.chartColors.red,
 					borderColor: window.chartColors.red,
-					data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
-					],
+					data: [12,5,4,6,7,<?php //echo DatosGrafica::ObjetosPerdidos();?>],
 					fill: false,
 				}, {
-					label: 'My Second dataset',
+					label: 'Objetos encontrados',
 					fill: false,
 					backgroundColor: window.chartColors.blue,
 					borderColor: window.chartColors.blue,
-					data: [
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor(),
-						randomScalingFactor()
+					data: [10,3,9,2,6,<?php //echo DatosGrafica::ObjetosEntregados();?>
 					],
 				}]
 			},
@@ -81,7 +66,7 @@ if(!isset($_SESSION["usuario"])){
 				responsive: true,
 				title: {
 					display: true,
-					text: 'Chart.js Line Chart'
+					text: 'Objetos perdidos y encontrados en un intervalo de 5 meses'
 				},
 				tooltips: {
 					mode: 'index',
@@ -115,7 +100,7 @@ if(!isset($_SESSION["usuario"])){
 			window.myLine = new Chart(ctx, config);
 		};
 
-		document.getElementById('randomizeData').addEventListener('click', function() {
+	/*	document.getElementById('randomizeData').addEventListener('click', function() {
 			config.data.datasets.forEach(function(dataset) {
 				dataset.data = dataset.data.map(function() {
 					return randomScalingFactor();
@@ -172,7 +157,7 @@ if(!isset($_SESSION["usuario"])){
 			});
 
 			window.myLine.update();
-		});
+		}); */
 	</script>
 </body>
 </html>
